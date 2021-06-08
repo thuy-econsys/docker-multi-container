@@ -1,8 +1,15 @@
-**User**    => frontend **React** client app  => backend **Express** server 
+basic architecture of containers
 
-            => **PostgreSQL** store permanent list of indices 
-**Express** 
-                                              =>             watches Redis for new indices
-            => **Redis**  store indices and   <= **Worker**  pulls each new index, calculates new value
-                          calculated values   =>             puts it back into Redis
-                          as key-value pairs
+```
+User => React frontend client => Express backend server
+
+        | =>  PostgreSQL 
+        |     store permanent list of indices
+Express |     
+        |
+        | =>  Redis                               |     Worker 
+              store indices & calculated values   | =>  watches Redis for new indices, pulls each new index, 
+              as key-value pairs                  | <=  calculates new value then puts it back into Redis
+
+
+```

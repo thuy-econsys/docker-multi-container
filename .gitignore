@@ -1,3 +1,4 @@
+# for capturing sub-directories, too
 node_modules/
 
 # production
