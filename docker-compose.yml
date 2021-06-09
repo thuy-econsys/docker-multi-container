@@ -1,0 +1,39 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:13-alpine'
+  redis:
+    image: 'redis:6-alpine'
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/md715/node_modules
+      - ./server:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGPASSWORD=postgres_password
+      - PGDATABASE=postgres
+      - PGHOST=postgres
+      - PGPORT=5432
+  client:
+    stdin_open: true
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/md715/node_modules
+      - ./client:/opt/md715
+  worker:
+    build:
+      context: ./worker
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/md715/node_modules
+      - ./worker:/opt/md715
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
