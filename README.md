@@ -21,3 +21,21 @@ Nginx   |              | =>  PostgreSQL
                        | =>  Redis  | =>  Worker
                                     | <=  
 ```
+
+## Dockerfile build image & run container command
+
+from within root directory, run to build image. note build context of relevant Dockerfile (./client, ./server, ./worker):
+```bash
+docker image build -t react:latest -f client/Dockerfile.dev ./client
+docker image build -t express:latest -f server/Dockerfile.dev ./server
+docker image build -t redis:latest -f worker/Dockerfile.dev ./worker
+```
+
+run container of specific images: 
+```bash
+docker container run -it react
+docker container run -it express
+docker container run -it redis
+```
+
+## docker-compose
