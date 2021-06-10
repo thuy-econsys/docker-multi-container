@@ -39,3 +39,19 @@ docker container run -it redis
 ```
 
 ## docker-compose
+
+build image
+```bash
+docker-compose --verbose build --no-cache
+```
+
+```bash
+docker-compose up 
+```
+
+tear down containers and remove network. data volume persists as the volume mount point defined in docker-compose.yml for PostgreSQL establishes the volume to be used
+```bash
+docker-compose down 
+```
+
+TODO check if bodyParser.json needs to be used i/o express.json
