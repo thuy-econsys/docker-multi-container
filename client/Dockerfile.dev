@@ -2,8 +2,8 @@ FROM node:alpine
 
 ENV APP="md715"
 
-#Ports to expose
-EXPOSE 3000
+#Ports to expose, default React port is 3000
+# EXPOSE 3000
 
 #Patch and mkdir, must run as root
 RUN apk upgrade --available && \
